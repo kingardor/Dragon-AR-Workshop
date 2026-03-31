@@ -61,3 +61,8 @@ Assets/MCPForUnity/
 Assets/MCPForUnity.meta
 Assets/Adaptive Performance/
 Assets/Adaptive Performance.meta
+
+# Large character FBX files — place manually, see docs/MANUAL_ASSETS.md
+Assets/black-dragon-with-idle-animation/source/Dragon.fbx
+Assets/infinian-lineage-series/source/Mon_Infinian_001_Skeleton.FBX
+Assets/tarisland-dragon-high-poly/source/M_B_44_Qishilong_skin_Skeleton.FBX
