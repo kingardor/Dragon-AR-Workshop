@@ -24,10 +24,35 @@ Dragon-AR-Workshop_BurstDebugInformation_DoNotShip/
 *.apk
 *.aab
 *.ipa
+*.unitypackage
+*.unitypackage.meta
+*.app
 
 # OS
 .DS_Store
 Thumbs.db
+
+# Misc Unity
+sysinfo.txt
+mono_crash.*
+*.blend1
+*.blend1.meta
+/[Mm]emoryCaptures/
+/[Rr]ecordings/
+ExportedObj/
+.consulo/
+*.tmp
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+*.pidb.meta
+*.pdb.meta
+*.mdb.meta
+.vs/
+.gradle/
+InitTestScene*.unity*
 
 # AI tooling (not for students)
 .claude/
