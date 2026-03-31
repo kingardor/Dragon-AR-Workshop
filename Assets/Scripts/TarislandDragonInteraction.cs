@@ -12,7 +12,7 @@ public class TarislandDragonInteraction : MonoBehaviour
     // Index 0 = idle/rest (played by Animator Controller default, NOT by tap).
     // Index 1+ = action clips cycled on each tap.
     // Example: { "Idle", "Fly", "Attack", "Death" }
-    [SerializeField] string[] animationStates;
+    [SerializeField] string[] animationStates = {};
 
     Animator animator;
     XRGrabInteractable grabInteractable;
