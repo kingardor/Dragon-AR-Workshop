@@ -228,7 +228,7 @@ namespace UnityEngine.XR.Templates.AR
         /// </summary>
         void OnEnable()
         {
-            m_CreateButton.onClick.AddListener(ShowMenu);
+            m_CreateButton?.onClick.AddListener(ShowMenu);
             m_CancelButton.onClick.AddListener(HideMenu);
             m_DeleteButton.onClick.AddListener(DeleteFocusedObject);
             m_PlaneManager.trackablesChanged.AddListener(OnPlaneChanged);
@@ -240,7 +240,7 @@ namespace UnityEngine.XR.Templates.AR
         void OnDisable()
         {
             m_ShowObjectMenu = false;
-            m_CreateButton.onClick.RemoveListener(ShowMenu);
+            m_CreateButton?.onClick.RemoveListener(ShowMenu);
             m_CancelButton.onClick.RemoveListener(HideMenu);
             m_DeleteButton.onClick.RemoveListener(DeleteFocusedObject);
             m_PlaneManager.trackablesChanged.RemoveListener(OnPlaneChanged);
@@ -303,7 +303,7 @@ namespace UnityEngine.XR.Templates.AR
             else
             {
                 m_IsPointerOverUI = false;
-                m_CreateButton.gameObject.SetActive(true);
+                m_CreateButton?.gameObject.SetActive(true);
                 m_DeleteButton.gameObject.SetActive(m_InteractionGroup?.focusInteractable != null);
             }
 
@@ -342,8 +342,8 @@ namespace UnityEngine.XR.Templates.AR
         void ShowMenu()
         {
             m_ShowObjectMenu = true;
-            m_ObjectMenu.SetActive(true);
-            if (!m_ObjectMenuAnimator.GetBool("Show"))
+            m_ObjectMenu?.SetActive(true);
+            if (m_ObjectMenuAnimator != null && !m_ObjectMenuAnimator.GetBool("Show"))
             {
                 m_ObjectMenuAnimator.SetBool("Show", true);
             }
@@ -425,7 +425,7 @@ namespace UnityEngine.XR.Templates.AR
         /// </summary>
         public void HideMenu()
         {
-            m_ObjectMenuAnimator.SetBool("Show", false);
+            m_ObjectMenuAnimator?.SetBool("Show", false);
             m_ShowObjectMenu = false;
             AdjustARDebugMenuPosition();
         }
@@ -460,12 +460,12 @@ namespace UnityEngine.XR.Templates.AR
 
         void InitializeDebugMenuOffsets()
         {
-            if (m_CreateButton.TryGetComponent<RectTransform>(out var buttonRect))
+            if (m_CreateButton != null && m_CreateButton.TryGetComponent<RectTransform>(out var buttonRect))
                 m_ObjectButtonOffset = new Vector2(0f, buttonRect.anchoredPosition.y + buttonRect.rect.height + 10f);
             else
                 m_ObjectButtonOffset = new Vector2(0f, 200f);
 
-            if (m_ObjectMenu.TryGetComponent<RectTransform>(out var menuRect))
+            if (m_ObjectMenu != null && m_ObjectMenu.TryGetComponent<RectTransform>(out var menuRect))
                 m_ObjectMenuOffset = new Vector2(0f, menuRect.anchoredPosition.y + menuRect.rect.height + 10f);
             else
                 m_ObjectMenuOffset = new Vector2(0f, 345f);
