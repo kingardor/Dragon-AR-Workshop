@@ -22,7 +22,8 @@ public class TarislandDragonSetup : MonoBehaviour
         // Compensate for FBX import scale (check Model Import Settings → Scale Factor).
         // The Black Dragon FBX uses 0.01 (cm→m). Adjust if this model differs.
         // Note: assumes uniform scale. If non-uniform, use lossyScale.y for height.
-        float invScale = 1f / Mathf.Abs(transform.lossyScale.x);
+        float sx = Mathf.Abs(transform.lossyScale.x);
+        float invScale = sx > 1e-6f ? 1f / sx : 1f;
         col.center = new Vector3(0f, 1f * invScale, 0f);
         col.size   = new Vector3(1.5f * invScale, 2f * invScale, 1.5f * invScale);
     }
