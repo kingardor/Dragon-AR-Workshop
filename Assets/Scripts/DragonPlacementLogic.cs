@@ -5,24 +5,38 @@ public class DragonPlacementLogic : MonoBehaviour
 {
     public ObjectSpawner spawner;
 
-    void Start()
+    GameObject currentDragon;
+
+    void OnEnable()
     {
         if (spawner != null)
             spawner.objectSpawned += OnDragonSpawned;
+        DragonEvents.OnDragonDestroyed += OnCurrentDragonDestroyed;
+    }
+
+    void OnDisable()
+    {
+        if (spawner != null)
+            spawner.objectSpawned -= OnDragonSpawned;
+        DragonEvents.OnDragonDestroyed -= OnCurrentDragonDestroyed;
     }
 
     void OnDragonSpawned(GameObject newObj)
     {
-        // Face the camera on spawn
+        if (currentDragon != null)
+            Destroy(currentDragon);
+
+        currentDragon = newObj;
+
+        // Rotate to face the camera on spawn
         Vector3 forward = Camera.main.transform.position - newObj.transform.position;
         forward.y = 0;
         if (forward != Vector3.zero)
             newObj.transform.rotation = Quaternion.LookRotation(forward);
     }
 
-    void OnDestroy()
+    void OnCurrentDragonDestroyed()
     {
-        if (spawner != null)
-            spawner.objectSpawned -= OnDragonSpawned;
+        currentDragon = null;
     }
 }
