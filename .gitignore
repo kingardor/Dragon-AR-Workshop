@@ -1,0 +1,40 @@
+# Unity generated
+Library/
+Temp/
+Logs/
+obj/
+Build/
+build/
+Builds/
+UserSettings/
+
+# Unity cache / burst debug / temp
+.utmp/
+*.pidb
+*.booproj
+*.unityproj
+*.suo
+*.user
+*.userprefs
+*.csproj
+*.sln
+Dragon-AR-Workshop_BurstDebugInformation_DoNotShip/
+
+# Build output
+*.apk
+*.aab
+*.ipa
+
+# OS
+.DS_Store
+Thumbs.db
+
+# AI tooling (not for students)
+.claude/
+docs/superpowers/
+Assets/MCPForUnity/
+Assets/MCPForUnity.meta
+Assets/TextMesh Pro/
+Assets/TextMesh Pro.meta
+Assets/Adaptive Performance/
+Assets/Adaptive Performance.meta
