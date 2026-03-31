@@ -72,4 +72,9 @@ public class DragonInteraction : MonoBehaviour
         }
         // Long hold (drag/reposition): leave animation state unchanged
     }
+
+    void OnDestroy()
+    {
+        DragonEvents.NotifyDestroyed();
+    }
 }
