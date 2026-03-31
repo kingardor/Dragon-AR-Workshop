@@ -18,7 +18,7 @@ public class DragonSelector : MonoBehaviour
     // Wire each card's Button → DragonSelector.SelectDragon(N) in the scene.
     public void SelectDragon(int index)
     {
-        if (objectSpawner == null || index < 0 || index >= cards.Length) return;
+        if (objectSpawner == null || cards == null || index < 0 || index >= cards.Length) return;
         objectSpawner.spawnOptionIndex = index;
         for (int i = 0; i < cards.Length; i++)
             cards[i].SetSelected(i == index);
