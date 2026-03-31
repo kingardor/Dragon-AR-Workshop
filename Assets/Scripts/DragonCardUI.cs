@@ -10,7 +10,7 @@ public class DragonCardUI : MonoBehaviour
 
     [Header("Selected Colors")]
     [SerializeField] Color selectedBgColor     = new Color(0.10f, 0.12f, 0.25f, 0.95f);
-    [SerializeField] Color selectedRingColor   = new Color(1.00f, 0.84f, 0.00f, 1.00f); // gold
+    [SerializeField] Color selectedRingColor   = new Color(0.85f, 0.10f, 0.10f, 1.00f); // red
     [SerializeField] Color selectedTextColor   = Color.white;
 
     [Header("Unselected Colors")]

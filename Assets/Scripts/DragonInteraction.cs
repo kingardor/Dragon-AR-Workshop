@@ -7,7 +7,7 @@ using UnityEngine.XR.Interaction.Toolkit.Interactables;
 public class DragonInteraction : MonoBehaviour
 {
     // Touch must be held longer than this to count as "move" vs "tap"
-    [SerializeField] float holdToMoveDelay = 0.35f;
+    [SerializeField] float holdToMoveDelay = 1f;
 
     Animator animator;
     XRGrabInteractable grabInteractable;
@@ -17,6 +17,7 @@ public class DragonInteraction : MonoBehaviour
     bool movedDuringHold;
     float selectTime;
     Vector3 savedPosition;
+    Vector3 savedScale;
 
     void Awake()
     {
@@ -42,22 +43,24 @@ public class DragonInteraction : MonoBehaviour
         movedDuringHold = false;
         selectTime = Time.time;
         savedPosition = transform.position;
+        savedScale = transform.localScale;
     }
 
     void Update()
     {
         if (!isSelected) return;
 
+        // A pinch gesture changes scale before holdToMoveDelay expires — treat it as a move.
+        if (!movedDuringHold && transform.localScale != savedScale)
+            movedDuringHold = true;
+
         if (Time.time - selectTime < holdToMoveDelay)
         {
-            // Lock position during the tap threshold window
-            transform.position = savedPosition;
+            if (!movedDuringHold)
+                transform.position = savedPosition;
         }
         else if (!movedDuringHold)
-        {
-            // Threshold passed — this is a hold, allow ARTransformer to move freely
             movedDuringHold = true;
-        }
     }
 
     void OnSelectExited(SelectExitEventArgs args)

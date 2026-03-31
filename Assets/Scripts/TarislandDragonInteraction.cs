@@ -22,6 +22,7 @@ public class TarislandDragonInteraction : MonoBehaviour
     bool movedDuringHold;
     float selectTime;
     Vector3 savedPosition;
+    Vector3 savedScale;
 
     void Awake()
     {
@@ -53,14 +54,22 @@ public class TarislandDragonInteraction : MonoBehaviour
         movedDuringHold = false;
         selectTime = Time.time;
         savedPosition = transform.position;
+        savedScale = transform.localScale;
     }
 
     void Update()
     {
         if (!isSelected) return;
 
+        // A pinch gesture changes scale before holdToMoveDelay expires — treat it as a move.
+        if (!movedDuringHold && transform.localScale != savedScale)
+            movedDuringHold = true;
+
         if (Time.time - selectTime < holdToMoveDelay)
-            transform.position = savedPosition;
+        {
+            if (!movedDuringHold)
+                transform.position = savedPosition;
+        }
         else if (!movedDuringHold)
             movedDuringHold = true;
     }
