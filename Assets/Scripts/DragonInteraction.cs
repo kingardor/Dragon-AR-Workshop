@@ -75,6 +75,7 @@ public class DragonInteraction : MonoBehaviour
 
     void OnDestroy()
     {
-        DragonEvents.NotifyDestroyed();
+        if (Application.isPlaying)
+            DragonEvents.NotifyDestroyed();
     }
 }
